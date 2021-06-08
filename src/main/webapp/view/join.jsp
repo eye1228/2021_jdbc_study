@@ -10,8 +10,11 @@
 	width: 300px; margin: auto;
 }
 div{text-align: center;; margin: 100px; auto;}
-table, th, td{
-	padding: 15px; 10px;
+table, th,td{
+	padding : 10px 5px;
+}	
+input{
+   padding : 10px;
 }
 </style>
 </head>

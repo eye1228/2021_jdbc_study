@@ -12,7 +12,7 @@
     
     // DB에 해당 id와 pw가 맞는지 검사 하자 
     VO vo2 = DAO.getInstance().getLogIn(vo);
-    
+   
     //jstl과 EL은 pageContext, request, session, application에 저장되어있어야 한다.
     // 로그인 정보는 기본적으로 session저장한다.
     session.setAttribute("vo2", vo2);
