@@ -1,6 +1,15 @@
+<%@page import="com.ict.db.DAO"%>
+<%@page import="com.ict.db.VO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%
+	request.setCharacterEncoding("utf-8");
+    String idx = request.getParameter("idx");
+    
+    VO vo = DAO.getInstance().getDetail(idx);
+    pageContext.setAttribute("vo", vo);
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,52 +33,59 @@
 		f.action="list.jsp";
 		f.submit();
 	}
-	function update_go(f) {
-		f.action="update.jsp";
-		f.submit();
-	}
-	function delete_go(f) {
-		f.action="delete.jsp";
-		f.submit();
+	function update_ok(f) {
+	  if("${param.pw}"==f.pw.value){
+		  f.action="update_ok.jsp";
+		  f.submit();
+	  }else{
+		  alert("비밀번호틀림");
+		  f.pw.value="";
+		  f.pw.focus();
+		  return;
+	  }
 	}	
 </script>
 </head>
 <body>
 	<div>
-	    <h2>개인 정보 보기</h2>
+	    <h2>개인 정보 수정</h2>
 		<form  method="post">
 			<table>
 				<tbody>
 					<tr>
-						<th style="width: 40%">IDX</th><td>${vo2.idx }</td>
+						<th style="width: 40%">IDX</th>
+						<td><input type="text" name="idx" value="${vo.idx }" readonly></td>
 					</tr>
 					<tr>
-						<th>ID</th><td>${vo2.id }</td>
+						<th>ID</th>
+						<td><input type="text" name="id" value="${vo.id }" readonly></td>
 					</tr>
 					<tr>
-						<th>PW</th><td>${vo2.pw }</td>
+						<th>PW</th>
+						<td><input type="password" name="pw"  ></td>
 					</tr>
 					<tr>
-						<th>NAME</th><td>${vo2.name }</td>
+						<th>NAME</th>
+						<td><input type="text" name="name" value="${vo.name }"></td>
 					</tr>
 					<tr>
-						<th>AGE</th><td>${vo2.age }</td>
+						<th>AGE</th>
+						<td><input type="number" name="age" value="${vo.age }"></td>
 					</tr>
 					<tr>
-						<th>ADDR</th><td>${vo2.addr }</td>
+						<th>ADDR</th>
+						<td><input type="text" name="addr" value="${vo.addr}"></td>
 					</tr>
 					<tr>
-						<th>REG</th><td>${vo2.reg.substring(0,10) }</td>
+						<th>REG</th>
+						<td><input type="text" name="reg" value="${vo.reg.substring(0,10) }" readonly></td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="2">
 						    <input type="button" value="전체보기" onclick="list_go(this.form)">
-						    <input type="button" value="수정" onclick="update_go(this.form)">
-						    <input type="button" value="삭제" onclick="delete_go(this.form)">
-						    <%-- 정보가 session 저장되어 있으므로 별도로 저장할 필요는 없다.
-						          수정, 삭제를 위해서는 idx와 pw가 반드시 필요하다.  --%>
+						    <input type="button" value="수정" onclick="update_ok(this.form)">
 						</td>	
 					</tr>
 				</tfoot>				
