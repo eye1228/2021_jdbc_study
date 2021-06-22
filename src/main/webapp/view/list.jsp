@@ -5,12 +5,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <%
-   // 테이블 전체 정보 가져오기
-	List<VO> list = DAO.getInstance().getSelectAll();
+      // 테이블 전체 정보 가져오기
+      	List<VO> list = DAO.getInstance().getSelectAll();
 
-   // 아래에서 jstl를 사용하기 위해서 저장
-    pageContext.setAttribute("list", list);
-%> 
+         // 아래에서 jstl를 사용하기 위해서 저장
+          pageContext.setAttribute("list", list);
+      %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
 	    border-collapse: collapse;
 	    width: 500px;
 	    margin: auto;
-   }	
+   }
    input{
       padding : 10px;
    }
